@@ -6,8 +6,7 @@ type Transport interface {
 }
 
 // Ship is a struct that represents a mode of transport over sea.
-type Ship struct {
-}
+type Ship struct{}
 
 // Deliver orchestrates the delivery process and returns a delivery message.
 func (s Ship) Deliver() string {
@@ -15,8 +14,7 @@ func (s Ship) Deliver() string {
 }
 
 // Trunk is a struct that represents a mode of transport over road.
-type Trunk struct {
-}
+type Trunk struct{}
 
 // Deliver orchestrates the delivery process and returns a delivery message.
 func (t *Trunk) Deliver() string {

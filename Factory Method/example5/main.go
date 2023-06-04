@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 // Object represents the object that will be reused
-type Object struct {
-}
+type Object struct{}
 
 // ObjectPool represents the object pool that stores the reusable objects
 type ObjectPool struct {

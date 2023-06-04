@@ -18,8 +18,7 @@ func getGUIFactory(platform string) (GUIFactory, error) {
 	}
 }
 
-type MacOSFactory struct {
-}
+type MacOSFactory struct{}
 
 func (mf *MacOSFactory) createButton() Button {
 	return &MacOSButton{}
@@ -29,8 +28,7 @@ func (mf *MacOSFactory) createCheckBox() Checkbox {
 	return &MacOSCheckbox{}
 }
 
-type WindowsFactory struct {
-}
+type WindowsFactory struct{}
 
 func (wf *WindowsFactory) createButton() Button {
 	return &WindowsButton{}
@@ -44,15 +42,13 @@ type Button interface {
 	paint()
 }
 
-type MacOSButton struct {
-}
+type MacOSButton struct{}
 
 func (mb *MacOSButton) paint() {
 	fmt.Println("You have created MacOSButton.")
 }
 
-type WindowsButton struct {
-}
+type WindowsButton struct{}
 
 func (wb *WindowsButton) paint() {
 	fmt.Println("You have created WindowsButton.")
@@ -62,15 +58,13 @@ type Checkbox interface {
 	paint()
 }
 
-type MacOSCheckbox struct {
-}
+type MacOSCheckbox struct{}
 
 func (mc *MacOSCheckbox) paint() {
 	fmt.Println("You have created MacOSCheckbox.")
 }
 
-type WindowsCheckbox struct {
-}
+type WindowsCheckbox struct{}
 
 func (wc *WindowsCheckbox) paint() {
 	fmt.Println("You have created WindowsCheckbox.")

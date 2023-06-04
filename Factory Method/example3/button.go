@@ -9,8 +9,7 @@ type Button interface {
 }
 
 // WindowsButton is a concrete implementation of the Button interface, representing a button in the Windows environment
-type WindowsButton struct {
-}
+type WindowsButton struct{}
 
 // render method for WindowsButton
 func (wb *WindowsButton) render() {
@@ -23,8 +22,7 @@ func (wb *WindowsButton) onClick() {
 }
 
 // HTMLButton is another concrete implementation of the Button interface, representing a button in the Web environment
-type HTMLButton struct {
-}
+type HTMLButton struct{}
 
 // render method for HTMLButton
 func (hb *HTMLButton) render() {
