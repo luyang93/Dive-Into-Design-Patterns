@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// createDialog function creates an instance of Dialog based on the operating system type
 func createDialog(OS string) (Dialog, error) {
 	switch OS {
 	case "Windows":
@@ -14,6 +15,7 @@ func createDialog(OS string) (Dialog, error) {
 }
 
 func main() {
+	// Create a WindowsDialog instance and render it
 	dialog, _ := createDialog("Windows")
 	dialog.render()
 }
