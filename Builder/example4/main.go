@@ -17,7 +17,6 @@ type Builder interface {
 	SetEngine(string)
 	SetTripComputer(bool)
 	SetGPS(bool)
-	GetProduct() interface{}
 }
 
 // CarBuilder is a concrete builder that implements the Builder interface.
@@ -26,34 +25,34 @@ type CarBuilder struct {
 }
 
 // Reset method clears the current building process.
-func (b *CarBuilder) Reset() {
-	b.car = &Car{}
+func (cb *CarBuilder) Reset() {
+	cb.car = &Car{}
 }
 
 // SetSeats method sets the number of seats in the car
-func (b *CarBuilder) SetSeats(seats int) {
-	b.car.Seats = seats
+func (cb *CarBuilder) SetSeats(seats int) {
+	cb.car.Seats = seats
 }
 
 // SetEngine method installs a specific engine
-func (b *CarBuilder) SetEngine(engine string) {
-	b.car.Engine = engine
+func (cb *CarBuilder) SetEngine(engine string) {
+	cb.car.Engine = engine
 }
 
 // SetTripComputer method installs a trip computer
-func (b *CarBuilder) SetTripComputer(hasTripComputer bool) {
-	b.car.TripComputer = hasTripComputer
+func (cb *CarBuilder) SetTripComputer(hasTripComputer bool) {
+	cb.car.TripComputer = hasTripComputer
 }
 
 // SetGPS method installs a GPS
-func (b *CarBuilder) SetGPS(hasGPS bool) {
-	b.car.GPS = hasGPS
+func (cb *CarBuilder) SetGPS(hasGPS bool) {
+	cb.car.GPS = hasGPS
 }
 
 // GetProduct method returns the result of the building process.
-func (b *CarBuilder) GetProduct() interface{} {
-	result := b.car
-	b.Reset()
+func (cb *CarBuilder) GetProduct() *Car {
+	result := cb.car
+	cb.Reset()
 	return result
 }
 
@@ -65,33 +64,33 @@ type ManualBuilder struct {
 	manual *Manual
 }
 
-func (b *ManualBuilder) Reset() {
-	b.manual = &Manual{}
+func (mb *ManualBuilder) Reset() {
+	mb.manual = &Manual{}
 }
 
-func (b *ManualBuilder) SetSeats(seats int) {
-	b.manual.Description += fmt.Sprintf("This car has %d seats.\n", seats)
+func (mb *ManualBuilder) SetSeats(seats int) {
+	mb.manual.Description += fmt.Sprintf("This car has %d seats.\n", seats)
 }
 
-func (b *ManualBuilder) SetEngine(engine string) {
-	b.manual.Description += fmt.Sprintf("This car has a %s engine.\n", engine)
+func (mb *ManualBuilder) SetEngine(engine string) {
+	mb.manual.Description += fmt.Sprintf("This car has a %s engine.\n", engine)
 }
 
-func (b *ManualBuilder) SetTripComputer(hasTripComputer bool) {
+func (mb *ManualBuilder) SetTripComputer(hasTripComputer bool) {
 	if hasTripComputer {
-		b.manual.Description += "This car has a trip computer.\n"
+		mb.manual.Description += "This car has a trip computer.\n"
 	}
 }
 
-func (b *ManualBuilder) SetGPS(hasGPS bool) {
+func (mb *ManualBuilder) SetGPS(hasGPS bool) {
 	if hasGPS {
-		b.manual.Description += "This car has a GPS.\n"
+		mb.manual.Description += "This car has a GPS.\n"
 	}
 }
 
-func (b *ManualBuilder) GetProduct() interface{} {
-	result := b.manual
-	b.Reset()
+func (mb *ManualBuilder) GetProduct() *Manual {
+	result := mb.manual
+	mb.Reset()
 	return result
 }
 
