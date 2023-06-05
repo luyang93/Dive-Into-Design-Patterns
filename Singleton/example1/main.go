@@ -11,7 +11,7 @@ type single struct{}
 
 var singleInstance *single
 
-func getInstance() *single {
+func GetInstance() *single {
 	if singleInstance == nil {
 		lock.Lock()
 		defer lock.Unlock()
@@ -30,7 +30,7 @@ func getInstance() *single {
 func main() {
 
 	for i := 0; i < 30; i++ {
-		go getInstance()
+		go GetInstance()
 	}
 
 	// Scanln is similar to Scan, but stops scanning at a newline and
