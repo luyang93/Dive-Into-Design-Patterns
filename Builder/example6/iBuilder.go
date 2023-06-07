@@ -8,10 +8,10 @@ type iBuilder interface {
 }
 
 func getBuilder(builderType string) iBuilder {
-	if builderType == "normal" {
+	switch builderType {
+	case "normal":
 		return &normalBuilder{}
-	}
-	if builderType == "igloo" {
+	case "igloo":
 		return &iglooBuilder{}
 	}
 	return nil
