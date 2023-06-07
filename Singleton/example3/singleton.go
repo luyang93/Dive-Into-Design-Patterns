@@ -8,7 +8,9 @@ var (
 	singletonInstance *singleton
 )
 
-type singleton struct{}
+type singleton struct {
+	ID int
+}
 
 // wrong example
 func GetInstance() *singleton {

@@ -11,7 +11,9 @@ var (
 
 var lock = &sync.Mutex{}
 
-type singleton struct{}
+type singleton struct {
+	ID int
+}
 
 func GetInstance() *singleton {
 	if singletonInstance == nil {

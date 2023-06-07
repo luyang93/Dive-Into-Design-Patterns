@@ -12,6 +12,7 @@ var (
 
 // Database defines the singleton database class
 type Database struct {
+	ID int
 	// Other fields can be added here
 }
 
