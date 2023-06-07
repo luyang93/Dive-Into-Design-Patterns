@@ -5,13 +5,14 @@ import (
 	"sync"
 )
 
-var wg sync.WaitGroup
+var (
+	wg                sync.WaitGroup
+	singletonInstance *singleton
+)
 
 var lock = &sync.Mutex{}
 
 type singleton struct{}
-
-var singletonInstance *singleton
 
 func GetInstance() *singleton {
 	defer wg.Done()

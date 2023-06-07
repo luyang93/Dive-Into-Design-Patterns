@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	singletonInstance *singleton
 	wg                sync.WaitGroup
+	singletonInstance *singleton
 )
 
 type singleton struct{}
