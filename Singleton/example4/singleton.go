@@ -2,21 +2,20 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 var (
-	wg                sync.WaitGroup
 	singletonInstance *singleton
 )
 
 type singleton struct{}
 
+// wrong example
 func GetInstance() *singleton {
-	defer wg.Done()
 	if singletonInstance == nil {
 		fmt.Println("Creating single instance now.")
 		singletonInstance = &singleton{}
+		fmt.Println(&singletonInstance)
 		return singletonInstance
 	}
 	fmt.Println("Single instance already created.")

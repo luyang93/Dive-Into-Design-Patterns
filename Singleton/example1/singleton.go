@@ -6,7 +6,6 @@ import (
 )
 
 var (
-	wg                sync.WaitGroup
 	singletonInstance *singleton
 )
 
@@ -15,7 +14,6 @@ var lock = &sync.Mutex{}
 type singleton struct{}
 
 func GetInstance() *singleton {
-	defer wg.Done()
 	if singletonInstance == nil {
 		lock.Lock()
 		defer lock.Unlock()
