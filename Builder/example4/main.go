@@ -2,14 +2,6 @@ package main
 
 import "fmt"
 
-// Car represents a product to be built.
-type Car struct {
-	Seats        int
-	Engine       string
-	TripComputer bool
-	GPS          bool
-}
-
 // Builder is the interface that specifies the steps to build the product.
 type Builder interface {
 	Reset()
@@ -17,6 +9,14 @@ type Builder interface {
 	SetEngine(string)
 	SetTripComputer(bool)
 	SetGPS(bool)
+}
+
+// Car represents a product to be built.
+type Car struct {
+	Seats        int
+	Engine       string
+	TripComputer bool
+	GPS          bool
 }
 
 // CarBuilder is a concrete builder that implements the Builder interface.
