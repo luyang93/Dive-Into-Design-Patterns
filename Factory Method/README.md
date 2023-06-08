@@ -9,7 +9,7 @@ interface iGun {
     + getPower() int
 }
 
-class gun {
+class Gun {
     + name: string
     + power: int
     + setName(string)
@@ -19,11 +19,11 @@ class gun {
 }
 
 class ak47 {
-    + gun
+    + Gun
 }
 
 class maverick {
-    + gun
+    + Gun
 }
 
 class GunFactory {
@@ -32,10 +32,14 @@ class GunFactory {
 
 class Client
 
-ak47 <|.. iGun: implementation
-maverick <|.. iGun: implementation
-ak47 o--> gun: aggregation
-maverick o--> gun: aggregation
-GunFactory --> iGun: creates
+Gun ..|> iGun
+
+ak47 --|> Gun
+maverick --|> Gun
+
+GunFactory ..> ak47
+GunFactory ..> maverick
+
 Client --> GunFactory
+
 ```
