@@ -9,46 +9,46 @@ type Mail interface {
 
 // Transport represents different types of transport for mails.
 type Transport interface {
-	Transport()
+	transport()
 }
 
 // Plane implements Transport interface.
 type Plane struct{}
 
-func (p *Plane) Transport() {
-	fmt.Println("Transporting by air.")
+func (p *Plane) transport() {
+	fmt.Println("Transporting by air - plane.")
 }
 
 // Truck implements Transport interface.
 type Truck struct{}
 
-func (t *Truck) Transport() {
+func (t *Truck) transport() {
 	fmt.Println("Transporting by ground - truck.")
 }
 
 // Train implements Transport interface.
 type Train struct{}
 
-func (t *Train) Transport() {
+func (t *Train) transport() {
 	fmt.Println("Transporting by ground - train.")
 }
 
 // AirMail is a subclass of Mail that uses Plane as transport.
 type AirMail struct {
-	transport Transport
+	Transport
 }
 
 func (am *AirMail) Deliver() {
-	am.transport.Transport()
+	am.transport()
 }
 
 // GroundMail is a subclass of Mail that can use both Truck and Train as transport.
 type GroundMail struct {
-	transport Transport
+	Transport
 }
 
 func (gm *GroundMail) Deliver() {
-	gm.transport.Transport()
+	gm.transport()
 }
 
 // Factory method to create AirMail and GroundMail.
