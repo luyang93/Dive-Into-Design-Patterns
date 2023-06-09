@@ -52,7 +52,7 @@ class Windows {
 }
 
 class WindowsAdapter {
-    +windowComputer: Windows
+    -windowComputer: Windows
     +InsertIntoLightningPort()
 }
 
@@ -60,4 +60,34 @@ class WindowsAdapter {
 "Mac" ..|> "Computer"
 "WindowsAdapter" ..|> "Computer"
 "WindowsAdapter" --> "Windows" : adapts >
+```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface "Computer" {
+    +InsertIntoLightningPort()
+}
+
+class Client {
+    +InsertLightningConnectorIntoComputer(computer : Computer)
+}
+
+class Mac {
+    +InsertIntoLightningPort()
+}
+
+class Windows {
+    +InsertIntoUSBPort()
+}
+
+class WindowsAdapter {
+    -Windows
+    +InsertIntoLightningPort()
+}
+
+"Client" --> "Computer" : uses >
+"Mac" ..|> "Computer"
+"WindowsAdapter" ..|> "Computer"
+"WindowsAdapter" o--> "Windows" : adapts >
 ```

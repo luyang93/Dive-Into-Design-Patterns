@@ -8,7 +8,7 @@ func main() {
 
 	windowsComputer := &Windows{}
 	WindowsComputerAdapter := &WindowsAdapter{
-		windowsComputer: windowsComputer,
+		*windowsComputer,
 	}
 
 	client.InsertLightningConnectorIntoComputer(WindowsComputerAdapter)
