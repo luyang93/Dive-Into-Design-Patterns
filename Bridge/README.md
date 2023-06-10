@@ -99,3 +99,45 @@ Shape "1" o--> "1" Painter
 Circle --|> Shape
 Square --|> Shape
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Payment {
+  +ProcessPayment()
+}
+
+class CreditCardPayment {
+  +ProcessPayment()
+}
+
+class WeChatPayment {
+  +ProcessPayment()
+}
+
+class CashPayment {
+  +ProcessPayment()
+}
+
+interface Product {
+  +Purchase()
+}
+
+class Book {
+  +Purchase()
+}
+
+class Electronics {
+  +Purchase()
+}
+
+Payment <|.. CreditCardPayment
+Payment <|.. WeChatPayment
+Payment <|.. CashPayment
+
+Product <|.. Book
+Product <|.. Electronics
+
+Book ..> Payment : uses
+Electronics ..> Payment : uses
+```
