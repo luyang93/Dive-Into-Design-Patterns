@@ -56,3 +56,46 @@ Device <|.. Radio
 RemoteControl o-- Device
 AdvancedRemoteControl --|> RemoteControl
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Painter {
+    + Paint(s: Shape)
+}
+
+class RedPainter {
+    + Paint(s: Shape)
+}
+
+class BluePainter {
+    + Paint(s: Shape)
+}
+
+class Shape {
+    - shape: string
+    - color: string
+    - painter: Painter
+
+    + Draw(): void
+    + SetPainter(painter: Painter)
+}
+
+class Circle {
+    - shape: string
+    - color: string
+    - painter: Painter
+}
+
+class Square {
+    - shape: string
+    - color: string
+    - painter: Painter
+}
+
+Painter <|.. RedPainter
+Painter <|.. BluePainter
+Shape "1" o--> "1" Painter
+Circle --|> Shape
+Square --|> Shape
+```
