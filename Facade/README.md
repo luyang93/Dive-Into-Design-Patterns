@@ -43,3 +43,31 @@ walletFacade --> securityCode
 walletFacade --> notification
 walletFacade --> ledger
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+class Projector {
+  +On()
+  +Off()
+}
+
+class DVDPlayer {
+  +Play()
+  +Stop()
+}
+
+class SoundSystem {
+  +On()
+  +Off()
+}
+
+class HomeTheaterFacade {
+  +WatchMovie()
+  +StopMovie()
+}
+
+Projector "1" -down- "1" HomeTheaterFacade
+DVDPlayer "1" -- "1" HomeTheaterFacade
+SoundSystem "1" -- "1" HomeTheaterFacade
+```
