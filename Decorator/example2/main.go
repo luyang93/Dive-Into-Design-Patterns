@@ -12,6 +12,13 @@ func (p *VeggeMania) GetPrice() int {
 	return 15
 }
 
+type peppyPaneer struct {
+}
+
+func (p *peppyPaneer) GetPrice() int {
+	return 20
+}
+
 type TomatoTopping struct {
 	pizza IPizza
 }
@@ -32,17 +39,26 @@ func (c *CheeseTopping) GetPrice() int {
 
 func main() {
 
-	pizza := &VeggeMania{}
+	veggiePizza := &VeggeMania{}
 
 	//Add cheese topping
-	pizzaWithCheese := &CheeseTopping{
-		pizza: pizza,
+	veggiePizzaWithCheese := &CheeseTopping{
+		pizza: veggiePizza,
 	}
 
 	//Add tomato topping
-	pizzaWithCheeseAndTomato := &TomatoTopping{
-		pizza: pizzaWithCheese,
+	veggiePizzaWithCheeseAndTomato := &TomatoTopping{
+		pizza: veggiePizzaWithCheese,
 	}
 
-	fmt.Printf("Price of veggeMania with tomato and cheese topping is %d\n", pizzaWithCheeseAndTomato.GetPrice())
+	fmt.Printf("Price of veggieMania pizza with tomato and cheese topping is %d\n", veggiePizzaWithCheeseAndTomato.GetPrice())
+
+	peppyPaneerPizza := &peppyPaneer{}
+
+	//Add cheese topping
+	peppyPaneerPizzaWithCheese := &CheeseTopping{
+		pizza: peppyPaneerPizza,
+	}
+
+	fmt.Printf("Price of peppyPaneer with tomato and cheese topping is %d\n", peppyPaneerPizzaWithCheese.GetPrice())
 }

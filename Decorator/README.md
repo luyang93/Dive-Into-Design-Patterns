@@ -65,3 +65,35 @@ DataSourceDecorator <|-- EncryptionDecorator
 DataSourceDecorator <|-- CompressionDecorator
 DataSourceDecorator o-- DataSource
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Notifier {
+    + Send(message: String)
+}
+
+class EmailNotifier {
+    + Send(message: String)
+}
+
+class NotifierDecorator {
+    - notifier: Notifier
+    + Send(message: String)
+}
+
+class WeChatDecorator {
+    - notifier: NotifierDecorator
+    + Send(message: String)
+}
+
+class MobileDecorator {
+    - notifier: NotifierDecorator
+    + Send(message: String)
+}
+
+Notifier <|.. EmailNotifier
+Notifier <|.. NotifierDecorator
+NotifierDecorator <|-- WeChatDecorator
+NotifierDecorator <|-- MobileDecorator
+```

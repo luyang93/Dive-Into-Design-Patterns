@@ -79,33 +79,23 @@ func (cd *CompressionDecorator) ReadData() string {
 }
 
 func main() {
-	source := NewFileDataSource("file.dat")
+	var source DataSource = NewFileDataSource("file.dat")
 	source.WriteData("salaryRecords")
 	fmt.Println(source.ReadData())
 	fmt.Println("=======")
 
-	source1 := NewDataSourceDecorator(source)
-	source1.WriteData("salaryRecords")
-	fmt.Println(source1.ReadData())
+	source = NewDataSourceDecorator(source)
+	source.WriteData("salaryRecords")
+	fmt.Println(source.ReadData())
 	fmt.Println("=======")
 
-	source2 := NewEncryptionDecorator(source)
-	source2.WriteData("salaryRecords")
-	fmt.Println(source2.ReadData())
+	source = NewCompressionDecorator(source)
+	source.WriteData("salaryRecords")
+	fmt.Println(source.ReadData())
 	fmt.Println("=======")
 
-	source3 := NewCompressionDecorator(source)
-	source3.WriteData("salaryRecords")
-	fmt.Println(source3.ReadData())
-	fmt.Println("=======")
-
-	source4 := NewCompressionDecorator(source2)
-	source4.WriteData("salaryRecords")
-	fmt.Println(source4.ReadData())
-	fmt.Println("=======")
-
-	source5 := NewEncryptionDecorator(source3)
-	source5.WriteData("salaryRecords")
-	fmt.Println(source5.ReadData())
+	source = NewEncryptionDecorator(source)
+	source.WriteData("salaryRecords")
+	fmt.Println(source.ReadData())
 	fmt.Println("=======")
 }
