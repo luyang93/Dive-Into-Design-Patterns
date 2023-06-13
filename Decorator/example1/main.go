@@ -12,8 +12,6 @@ func (c *SimpleCoffee) Cost() float64 {
 	return 2
 }
 
-type CoffeeDecorator func(Coffee) Coffee
-
 func WithMilk(coffee Coffee) Coffee {
 	return &MilkDecorator{coffee}
 }
