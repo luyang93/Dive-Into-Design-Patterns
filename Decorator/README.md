@@ -27,3 +27,41 @@ Coffee <|.. SugarDecorator
 MilkDecorator o-- Coffee: has
 SugarDecorator o-- Coffee: has
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface DataSource {
+  +WriteData(data: string)
+  +ReadData(): string
+}
+
+class FileDataSource {
+  -filename: string
+  -data: string
+  +WriteData(data: string)
+  +ReadData(): string
+}
+
+class DataSourceDecorator {
+  -wrappee: DataSource
+  +WriteData(data: string)
+  +ReadData(): string
+}
+
+class EncryptionDecorator {
+  +WriteData(data: string)
+  +ReadData(): string
+}
+
+class CompressionDecorator {
+  +WriteData(data: string)
+  +ReadData(): string
+}
+
+DataSource <|.. FileDataSource
+DataSource <|.. DataSourceDecorator
+DataSourceDecorator <|-- EncryptionDecorator
+DataSourceDecorator <|-- CompressionDecorator
+DataSourceDecorator o-- DataSource
+```
