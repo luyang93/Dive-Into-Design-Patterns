@@ -44,3 +44,22 @@ ThirdPartyYouTubeLib <-- YouTubeManager
 CachedYouTubeClass o-- ThirdPartyYouTubeLib
 Application o-- YouTubeManager
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+class RemoteImage {
+    - url: String
+    + RemoteImage(url: String)
+    + displayImage(): void
+}
+
+class ImageProxy {
+    - url: String
+    - image: RemoteImage
+    + ImageProxy(url: String)
+    + displayImage(): void
+}
+
+RemoteImage --> ImageProxy
+```
