@@ -88,3 +88,49 @@ Cashier "1" --> "1" Department
 
 Patient "1" --> "*" Department
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface DispenseChain {
+  +SetNextChain(nextChain: DispenseChain)
+  +Dispense(currency: Currency)
+}
+
+class Dollar50Dispenser {
+  +Chain: DispenseChain
+  +SetNextChain(nextChain: DispenseChain)
+  +Dispense(currency: Currency)
+}
+
+class Dollar20Dispenser {
+  +Chain: DispenseChain
+  +SetNextChain(nextChain: DispenseChain)
+  +Dispense(currency: Currency)
+}
+
+class Dollar10Dispenser {
+  +Chain: DispenseChain
+  +SetNextChain(nextChain: DispenseChain)
+  +Dispense(currency: Currency)
+}
+
+class Currency {
+  -Amount: int
+}
+
+class ATMDispenser {
+  -C1: DispenseChain
+  +DispenseMoney(currency: Currency)
+}
+
+DispenseChain <|.. Dollar50Dispenser
+DispenseChain <|.. Dollar20Dispenser
+DispenseChain <|.. Dollar10Dispenser
+
+Dollar50Dispenser o-- Dollar20Dispenser: "chain"
+Dollar20Dispenser o-- Dollar10Dispenser: "chain"
+
+ATMDispenser o-- Dollar50Dispenser: "C1"
+ATMDispenser o-- Currency
+```
