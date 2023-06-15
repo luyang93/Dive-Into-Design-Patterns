@@ -20,11 +20,9 @@ type Component struct {
 func (c *Component) ShowHelp() string {
 	if c.tooltipText != "" {
 		return c.tooltipText
-	}
-	if c.container != nil {
+	} else {
 		return c.container.ShowHelp()
 	}
-	return ""
 }
 
 func (c *Component) SetContainer(container Container) {
@@ -75,7 +73,7 @@ func main() {
 	ok := Button{Component: Component{tooltipText: "This is an OK button…"}}
 
 	panel.Add(&ok)
-	dialog.Add(&panel2)
+	dialog.Add(&panel)
 
 	fmt.Println(dialog.ShowHelp())
 	fmt.Println(panel.ShowHelp())
