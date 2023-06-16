@@ -9,15 +9,6 @@ type Application struct {
 	History      CommandHistory
 }
 
-type CommandHistory struct {
-	History []Command
-}
-
-type Command interface {
-	Execute() bool
-	Undo()
-}
-
 type Editor struct {
 	Text string
 }
@@ -36,6 +27,15 @@ func (e *Editor) DeleteSelection() {
 func (e *Editor) ReplaceSelection(text string) {
 	// replace selected text
 	e.Text = text
+}
+
+type CommandHistory struct {
+	History []Command
+}
+
+type Command interface {
+	Execute() bool
+	Undo()
 }
 
 type CopyCommand struct {
