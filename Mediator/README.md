@@ -85,3 +85,27 @@ GoodsTrain -down- Mediator: uses
 StationManager ..> Mediator: implements
 StationManager ..> Train: uses
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Mediator {
+  +send(Message: string, Sender: Airplane)
+}
+
+class AirTrafficControl {
+  -Airplanes: []*Airplane
+  +send(Message: string, Sender: Airplane)
+  +RegisterAirplane(airplane: *Airplane)
+}
+
+class Airplane {
+  -Name: string
+  -Mediator: Mediator
+  +Send(Message: string)
+  +Receive(Message: string)
+}
+
+Airplane o-- AirTrafficControl
+Airplane -- Mediator
+```
