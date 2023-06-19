@@ -1,3 +1,3 @@
-module example1
+module example3
 
 go 1.20
