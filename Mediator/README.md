@@ -52,3 +52,36 @@ AuthenticationDialog ..> Button
 AuthenticationDialog ..> TextBox
 AuthenticationDialog ..> CheckBox
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Train {
+    + requestArrival()
+    + departure()
+    + permitArrival()
+}
+
+class PassengerTrain {
+    - Mediator
+}
+
+class GoodsTrain {
+    - Mediator
+}
+
+class StationManager {
+    - isPlatformFree: bool
+    - lock: sync.Mutex
+    - trainQueue: []Train
+    + canLand(train: Train): bool
+    + notifyFree()
+}
+
+Train <|.. PassengerTrain: implements
+Train <|.. GoodsTrain: implements
+PassengerTrain -down- Mediator: uses
+GoodsTrain -down- Mediator: uses
+StationManager ..> Mediator: implements
+StationManager ..> Train: uses
+```
