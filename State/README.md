@@ -111,3 +111,76 @@ Character "1" o--> "1" WalkingState : Has
 Character "1" o--> "1" RunningState : Has
 Character "1" o--> "1" JumpingState : Has
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+class vendingMachine {
+  - hasItem: state
+  - itemRequested: state
+  - hasMoney: state
+  - noItem: state
+  - currentState: state
+  - itemCount: int
+  - itemPrice: int
+  + newVendingMachine(itemCount, itemPrice)
+  + requestItem() error
+  + addItem(count) error
+  + insertMoney(money) error
+  + dispenseItem() error
+  + setState(s)
+  + incrementItemCount(count)
+}
+
+interface state {
+  + addItem(int) error
+  + requestItem() error
+  + insertMoney(money int) error
+  + dispenseItem() error
+}
+
+class noItemState {
+  - vendingMachine: vendingMachine
+  + requestItem() error
+  + addItem(count) error
+  + insertMoney(money) error
+  + dispenseItem() error
+}
+
+class hasItemState {
+  - vendingMachine: vendingMachine
+  + requestItem() error
+  + addItem(count) error
+  + insertMoney(money) error
+  + dispenseItem() error
+}
+
+class itemRequestedState {
+  - vendingMachine: vendingMachine
+  + requestItem() error
+  + addItem(count) error
+  + insertMoney(money) error
+  + dispenseItem() error
+}
+
+class hasMoneyState {
+  - vendingMachine: vendingMachine
+  + requestItem() error
+  + addItem(count) error
+  + insertMoney(money) error
+  + dispenseItem() error
+}
+
+vendingMachine --> state
+vendingMachine --> noItemState
+vendingMachine --> hasItemState
+vendingMachine --> itemRequestedState
+vendingMachine --> hasMoneyState
+vendingMachine "1" --> "*" state
+
+state <|.. noItemState
+state <|.. hasItemState
+state <|.. itemRequestedState
+state <|.. hasMoneyState
+
+```
