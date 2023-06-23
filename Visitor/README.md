@@ -123,3 +123,48 @@ shape <|.. rectangle
 visitor <|.. areaCalculator
 visitor <|.. middleCoordinates
 ```
+```plantuml
+left to right direction
+skinparam backgroundColor #F0F0F0
+
+interface Item {
+    + Accept(visitor: Visitor)
+    + GetPrice(): float64
+}
+
+class Book {
+    - price: float64
+    + Accept(visitor: Visitor)
+    + GetPrice(): float64
+}
+
+class Electronics {
+    - price: float64
+    + Accept(visitor: Visitor)
+    + GetPrice(): float64
+}
+
+interface Visitor {
+    + VisitBook(book: Book)
+    + VisitElectronics(electronics: Electronics)
+}
+
+class RegularPriceVisitor {
+    - totalCost: float64
+    + VisitBook(book: Book)
+    + VisitElectronics(electronics: Electronics)
+}
+
+class DiscountPriceVisitor {
+    - totalCost: float64
+    + VisitBook(book: Book)
+    + VisitElectronics(electronics: Electronics)
+}
+
+Item <|.. Book
+Item <|.. Electronics
+Visitor <|.. RegularPriceVisitor
+Visitor <|.. DiscountPriceVisitor
+Book --> Visitor : Accept
+Electronics --> Visitor : Accept
+```
